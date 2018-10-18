@@ -1,6 +1,7 @@
 import React from "react";
+import { connect } from "react-redux";
 
-export default ({ keyboardInputValue }) => {
+const Keyboard = ({ keyboardInputValue }) => {
   const wordNumbers = keyboardInputValue.split(" ").filter(s => s !== "")
     .length;
 
@@ -11,3 +12,13 @@ export default ({ keyboardInputValue }) => {
 
   return <h2 children={[message]} />;
 };
+
+const mapStateToProps = state => {
+  return {
+    keyboardInputValue: state.keyboardInputValue
+  };
+};
+
+export const connectKeyboardInputValue = connect(mapStateToProps);
+
+export const ConnectedWordCount = connectKeyboardInputValue(Keyboard);

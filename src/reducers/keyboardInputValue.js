@@ -1,9 +1,12 @@
+import { SET_NEW_INPUT_VALUE } from "../actions";
+
 export default function keyboardInputValue(
   state = "This comes from Redux",
   action
 ) {
+  //debugger;
   switch (action.type) {
-    case "SET_NEW_INPUT_VALUE":
+    case SET_NEW_INPUT_VALUE:
       return action.payload;
     default:
       return state;

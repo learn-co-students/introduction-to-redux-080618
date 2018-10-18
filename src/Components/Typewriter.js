@@ -1,26 +1,34 @@
 import React, { Component } from "react";
 import Keyboard from "./Keyboard";
-import WordCount from "./WordCount";
+import { ConnectedWordCount } from "./WordCount";
 import RbOrJs from "./RbOrJS";
 import { connect } from "react-redux";
+import { SET_NEW_INPUT_VALUE } from "../actions";
 
 class Typewriter extends Component {
-  state = {
-    keyboardInputValue: ""
+  // state = {
+  //   keyboardInputValue: ""
+  // };
+
+  // handleKeyboardInput = ({ target: { value: keyboardInputValue } }) =>
+  //   this.setState({ keyboardInputValue });
+
+  handleKeyboardInput = event => {
+    const action = {
+      type: SET_NEW_INPUT_VALUE,
+      payload: event.target.value
+    };
+    //debugger;
+    this.props.dispatchKeyboardInputChanges(action);
   };
 
-  handleKeyboardInput = ({ target: { value: keyboardInputValue } }) =>
-    this.setState({ keyboardInputValue });
-
   render() {
+    //debugger;
     return (
       <>
-        <Keyboard
-          keyboardInputValue={this.props.keyboardInputValue}
-          handleKeyboardInput={this.handleKeyboardInput}
-        />
-        <WordCount keyboardInputValue={this.state.keyboardInputValue} />
-        <RbOrJs keyboardInputValue={this.state.keyboardInputValue} />
+        <Keyboard handleKeyboardInput={this.handleKeyboardInput} />
+        <ConnectedWordCount />
+        <RbOrJs />
       </>
     );
   }
@@ -30,4 +38,17 @@ function mapStateToProps(state) {
   return { keyboardInputValue: state.keyboardInputValue };
 }
 
-export default connect(mapStateToProps)(Typewriter);
+function mapDispatchToProps(dispatch) {
+  return {
+    dispatchKeyboardInputChanges: function(action) {
+      dispatch(action);
+    }
+  };
+}
+
+//const connectKeyboardInputValue = connect(mapStateToProps);
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(Typewriter);

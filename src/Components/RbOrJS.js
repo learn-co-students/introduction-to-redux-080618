@@ -1,6 +1,8 @@
 import React from "react";
+//import { connectKeyboardInputValue } from "./WordCount";
+import { connect } from "react-redux";
 
-export default ({ keyboardInputValue }) => {
+const RbOrJS = ({ keyboardInputValue }) => {
   const { rb, js } = keyboardInputValue.split(" ").reduce(
     (acc, cv) => {
       if (cv.toLowerCase() === "rb") {
@@ -23,3 +25,11 @@ export default ({ keyboardInputValue }) => {
     </>
   );
 };
+
+const mapStateToProps = state => {
+  return {
+    keyboardInputValue: state.keyboardInputValue
+  };
+};
+
+export default connect(mapStateToProps)(RbOrJS);

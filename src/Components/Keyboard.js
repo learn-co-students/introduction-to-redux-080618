@@ -1,6 +1,8 @@
 import React from "react";
+import { connect } from "react-redux";
 
-export default ({ keyboardInputValue, handleKeyboardInput }) => {
+const Keyboard = ({ keyboardInputValue, handleKeyboardInput }) => {
+  console.log(keyboardInputValue);
   return (
     <input
       style={{
@@ -16,3 +18,11 @@ export default ({ keyboardInputValue, handleKeyboardInput }) => {
     />
   );
 };
+
+const mapStateToProps = state => {
+  return {
+    keyboardInputValue: state.keyboardInputValue
+  };
+};
+
+export default connect(mapStateToProps)(Keyboard);
