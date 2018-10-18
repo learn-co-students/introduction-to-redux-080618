@@ -1,4 +1,4 @@
-function keyboardInputValueReducer(state = "", action) {
+export default function keyboardInputValue(state = "", action) {
   switch (action.type) {
     case "SET_NEW_INPUT_VALUE":
       return action.payload;
