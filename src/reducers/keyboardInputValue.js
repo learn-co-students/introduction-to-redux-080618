@@ -1,5 +1,5 @@
 export default function keyboardInputValue(
-  state = "The default value",
+  state = "This comes from Redux",
   action
 ) {
   switch (action.type) {

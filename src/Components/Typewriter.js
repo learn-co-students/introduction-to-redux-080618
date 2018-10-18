@@ -2,8 +2,9 @@ import React, { Component } from "react";
 import Keyboard from "./Keyboard";
 import WordCount from "./WordCount";
 import RbOrJs from "./RbOrJS";
+import { connect } from "react-redux";
 
-export default class Typewriter extends Component {
+class Typewriter extends Component {
   state = {
     keyboardInputValue: ""
   };
@@ -15,7 +16,7 @@ export default class Typewriter extends Component {
     return (
       <>
         <Keyboard
-          keyboardInputValue={this.state.keyboardInputValue}
+          keyboardInputValue={this.props.keyboardInputValue}
           handleKeyboardInput={this.handleKeyboardInput}
         />
         <WordCount keyboardInputValue={this.state.keyboardInputValue} />
@@ -24,3 +25,9 @@ export default class Typewriter extends Component {
     );
   }
 }
+
+function mapStateToProps(state) {
+  return { keyboardInputValue: state.keyboardInputValue };
+}
+
+export default connect(mapStateToProps)(Typewriter);
