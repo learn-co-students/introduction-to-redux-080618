@@ -2,9 +2,6 @@ import React, { Component } from "react";
 import Keyboard from "./Keyboard";
 import WordCount from "./WordCount";
 import RbOrJs from "./RbOrJS";
-import store from "../store";
-
-console.log(store);
 
 export default class Typewriter extends Component {
   state = {
